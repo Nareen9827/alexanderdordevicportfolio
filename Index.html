@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexander Đorđević | Audio Engineer & Sound Designer</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        studioBg: '#0b0c0e',
+                        studioCard: '#111318',
+                        studioBorder: '#1b1d23',
+                        studioBorderHover: '#2d313b',
+                        studioMuted: '#5a5f6c',
+                        studioText: '#818896',
+                        studioAccent: '#93e382',
+                    },
+                }
+            }
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0b0c0e; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0b0c0e; }
+        ::-webkit-scrollbar-thumb { background: #1b1d23; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #2d313b; }
+
+        input[type=range] { -webkit-appearance: none; background: transparent; }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 12px; width: 12px;
+            border-radius: 50%; background: #93e382; cursor: pointer; margin-top: -4px;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 4px; cursor: pointer; background: #1b1d23; border-radius: 2px;
+        }
+        
+        .studio-image {
+            filter: grayscale(80%) contrast(1.1);
+            transition: all 0.5s ease;
+        }
+        .studio-image:hover {
+            filter: grayscale(0%) contrast(1);
+            border-color: #93e382;
+        }
+
+        /* Система мультиязычности */
+        html[lang="ru"] .en { display: none !important; }
+        html[lang="en"] .ru { display: none !important; }
+        
+        .lang-btn.active { color: #93e382; font-weight: bold; }
+    </style>
+</head>
+<body class="text-studioText selection:bg-studioAccent selection:text-studioBg min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- НАВИГАЦИЯ -->
+    <header class="fixed top-0 left-0 w-full bg-studioBg/90 backdrop-blur-md z-40 border-b border-studioBorder">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between font-mono text-xs tracking-wider">
+            <a href="#" class="text-white font-medium hover:text-studioAccent transition-colors">
+                A.ĐORĐEVIĆ <span class="text-studioMuted">// AUDIO</span>
+            </a>
+            <nav class="hidden md:flex space-x-8 uppercase">
+                <a href="#about" class="hover:text-white transition-colors"><span class="ru">Профиль</span><span class="en">Profile</span></a>
+                <a href="#experience" class="hover:text-white transition-colors"><span class="ru">Опыт</span><span class="en">Experience</span></a>
+                <a href="#studio" class="hover:text-white transition-colors"><span class="ru">Студия</span><span class="en">Studio</span></a>
+                <a href="#player-section" class="hover:text-white transition-colors"><span class="ru">Шоурил</span><span class="en">Showreel</span></a>
+                <a href="#contacts" class="hover:text-white transition-colors"><span class="ru">Контакты</span><span class="en">Contacts</span></a>
+            </nav>
+            <div class="flex items-center gap-6">
+                <!-- Переключатель языков -->
+                <div class="flex items-center gap-2 text-studioMuted font-bold">
+                    <button onclick="setLang('ru')" id="btn-ru" class="lang-btn hover:text-white transition-colors active">RU</button>
+                    <span class="text-studioBorderHover">/</span>
+                    <button onclick="setLang('en')" id="btn-en" class="lang-btn hover:text-white transition-colors">EN</button>
+                </div>
+                <span class="text-studioMuted uppercase hidden sm:block" id="live-time">00:00:00:00</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- ГЛАВНЫЙ ЭКРАН -->
+        <section class="min-h-screen flex flex-col justify-between pt-32 pb-12 px-6 max-w-6xl mx-auto">
+            <div class="my-auto max-w-4xl">
+                <p class="font-mono text-xs uppercase tracking-[0.25em] text-studioMuted mb-4 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 bg-studioAccent rounded-full animate-pulse"></span> 
+                    <span>Sound Engineer & Producer</span>
+                </p>
+                <h1 class="text-4xl sm:text-6xl font-normal text-white tracking-tight uppercase mb-8">
+                    Alexander Đorđević
+                </h1>
+                <p class="text-lg md:text-xl text-studioText max-w-3xl font-light leading-relaxed mb-12">
+                    <span class="ru">Звукорежиссер с профильным образованием SAE Institute. Специализируюсь на студийной звукозаписи, сведении, саунд-дизайне и пост-продакшене. Работаю как на съемочной площадке, так и в студии, доводя проекты до индустриальных стандартов.</span>
+                    <span class="en">Sound engineer with a degree from SAE Institute. Specializing in studio recording, mixing, sound design, and post-production. I work both on-set and in the studio, bringing projects to industry standards.</span>
+                </p>
+                <div class="flex flex-wrap gap-4 font-mono text-xs uppercase tracking-wider">
+                    <a href="#player-section" class="px-6 py-3.5 bg-studioBorder hover:bg-studioBorderHover text-white rounded transition-all">
+                        <span class="ru">[ Слушать Шоурил ]</span><span class="en">[ Listen to Showreel ]</span>
+                    </a>
+                    <a href="#experience" class="px-6 py-3.5 text-studioMuted hover:text-white transition-colors flex items-center">
+                        <span class="ru">Проекты</span><span class="en">Projects</span> <i class="fa-solid fa-arrow-down ml-2 text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-studioBorder pt-6 grid grid-cols-2 md:grid-cols-4 gap-4 font-mono text-[11px] uppercase tracking-wider text-studioMuted">
+                <div><span class="text-studioText">LOC:</span> Almaty / Belgrade</div>
+                <div><span class="text-studioText">MAIN DAW:</span> Ableton Live</div>
+                <div><span class="text-studioText">LANG:</span> RU / EN / SRB</div>
+                <div class="text-right hidden md:block"><span class="text-studioText">EDU:</span> SAE Institute</div>
+            </div>
+        </section>
+
+        <!-- ПРОФИЛЬ И НАВЫКИ -->
+        <section id="about" class="py-24 border-t border-studioBorder bg-[#090a0c]">
+            <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="md:col-span-2 space-y-6">
+                    <span class="font-mono text-xs uppercase text-studioMuted block">
+                        <span class="ru">// АКАДЕМИЧЕСКАЯ БАЗА И ПРАКТИКА</span><span class="en">// ACADEMIC BACKGROUND & PRACTICE</span>
+                    </span>
+                    <h2 class="text-2xl font-normal text-white uppercase tracking-tight">
+                        <span class="ru">От записи на площадке до финального микса</span><span class="en">From on-set recording to the final mix</span>
+                    </h2>
+                    <p class="text-sm leading-relaxed">
+                        <span class="ru">Мой подход строится на сочетании академической базы (Bachelor of Arts in Audio Production, Белград) и плотной практической работы. Имею опыт работы инженером звукозаписи и ассистентом в музыкальных студиях, а также бум-оператором на съемочных площадках.</span>
+                        <span class="en">My approach is built on a combination of an academic foundation (Bachelor of Arts in Audio Production, Belgrade) and extensive practical work. I have experience as a recording engineer and assistant in music studios, as well as a boom operator on film sets.</span>
+                    </p>
+                    <p class="text-sm leading-relaxed">
+                        <span class="ru">Понимаю специфику всего пайплайна: от чистового захвата речи и атмосферы на локации до спектральной реставрации аудио, синтеза уникальных текстур и многоканального сведения.</span>
+                        <span class="en">I understand the specifics of the entire pipeline: from clean dialogue and ambiance capture on location to spectral audio restoration, synthesis of unique textures, and multi-channel mixing.</span>
+                    </p>
+                    
+                    <div class="pt-6 grid grid-cols-2 gap-6 font-mono text-xs">
+                        <div>
+                            <span class="text-white block mb-2 uppercase">
+                                <span class="ru">Программная среда</span><span class="en">Software Environment</span>
+                            </span>
+                            <ul class="space-y-1 text-studioMuted">
+                                <li>> Ableton Live (Main)</li>
+                                <li>> Logic Pro</li>
+                                <li>> Nuendo</li>
+                                <li>> Pro Tools</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <span class="text-white block mb-2 uppercase">
+                                <span class="ru">Ключевые компетенции</span><span class="en">Key Competencies</span>
+                            </span>
+                            <ul class="space-y-1 text-studioMuted">
+                                <li><span class="ru">> Студийная звукозапись</span><span class="en">> Studio Recording</span></li>
+                                <li><span class="ru">> Саунд-дизайн и синтез</span><span class="en">> Sound Design & Synthesis</span></li>
+                                <li><span class="ru">> Сведение и мастеринг</span><span class="en">> Mixing & Mastering</span></li>
+                                <li><span class="ru">> Реставрация и ИИ-обработка</span><span class="en">> Restoration & AI Processing</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border border-studioBorder p-6 rounded bg-studioBg font-mono text-xs space-y-6 h-fit">
+                    <div>
+                        <span class="text-white block mb-2 uppercase tracking-wider">
+                            <span class="ru">// КЛИЕНТЫ И БРЕНДЫ</span><span class="en">// CLIENTS & BRANDS</span>
+                        </span>
+                        <p class="text-[#717784] leading-relaxed mb-3">
+                            <span class="ru">Сотрудничал с продакшенами Tartaria Films, Chilly Production, The Pact, JKS Production.</span>
+                            <span class="en">Collaborated with production companies Tartaria Films, Chilly Production, The Pact, and JKS Production.</span>
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-studioBorder rounded text-white">Kinder</span>
+                            <span class="px-2 py-1 bg-studioBorder rounded text-white">L'oreal Paris</span>
+                            <span class="px-2 py-1 bg-studioBorder rounded text-white">Maybelline</span>
+                            <span class="px-2 py-1 bg-studioBorder rounded text-white">Halyk Bank</span>
+                            <span class="px-2 py-1 bg-studioBorder rounded text-white">Spitamen Bank</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ОПЫТ РАБОТЫ -->
+        <section id="experience" class="py-24 border-t border-studioBorder max-w-6xl mx-auto px-6">
+            <span class="font-mono text-xs uppercase text-studioMuted block mb-6">
+                <span class="ru">// КОММЕРЧЕСКИЙ ОПЫТ</span><span class="en">// COMMERCIAL EXPERIENCE</span>
+            </span>
+            <h2 class="text-3xl font-normal text-white uppercase tracking-tight mb-16">
+                <span class="ru">Профессиональная деятельность</span><span class="en">Professional Activity</span>
+            </h2>
+            
+            <div class="space-y-12">
+                <!-- Место 1 -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 border-l border-studioAccent pl-6">
+                    <div class="font-mono text-xs text-studioMuted mt-1">
+                        <span class="ru">Фев 2025 – Май 2026</span><span class="en">Feb 2025 – May 2026</span><br><span class="text-white">Almaty, KZ</span>
+                    </div>
+                    <div class="md:col-span-3">
+                        <h3 class="text-lg font-medium text-white uppercase">
+                            <span class="ru">Звукорежиссер / Саунд-дизайнер</span><span class="en">Sound Engineer / Sound Designer</span>
+                        </h3>
+                        <div class="font-mono text-xs text-studioAccent mb-4">SOUND SPACE</div>
+                        <p class="text-sm leading-relaxed text-[#717784]">
+                            <span class="ru">Полный цикл студийной работы. Музыкальный продакшн, запись вокала и инструментов, сведение и мастеринг треков для клиентов. Создание кастомного саунд-дизайна для медиа и видео-проектов.</span>
+                            <span class="en">Full cycle of studio work. Music production, vocal and instrumental recording, mixing, and mastering tracks for clients. Creation of custom sound design for media and video projects.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Место 2 -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 border-l border-studioBorder pl-6">
+                    <div class="font-mono text-xs text-studioMuted mt-1">
+                        <span class="ru">Июнь 2024 – Нояб 2024</span><span class="en">Jun 2024 – Nov 2024</span><br><span class="text-white">Belgrade, SRB</span>
+                    </div>
+                    <div class="md:col-span-3">
+                        <h3 class="text-lg font-medium text-white uppercase">
+                            <span class="ru">Звукорежиссер / Бум-оператор</span><span class="en">Sound Mixer / Boom Operator</span>
+                        </h3>
+                        <div class="font-mono text-xs text-studioMuted mb-4">RASKAT RENTAL</div>
+                        <p class="text-sm leading-relaxed text-[#717784]">
+                            <span class="ru">Работа на съемочной площадке. Многоканальная запись чистового звука (речь, петлички, бум, атмосферные фоны) на съемках коммерческих рекламных и промо-роликов.</span>
+                            <span class="en">On-set sound recording. Multi-channel recording of production sound (dialogue, lavaliers, boom, ambiances) on commercial and promo shoots.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Место 3 -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 border-l border-studioBorder pl-6">
+                    <div class="font-mono text-xs text-studioMuted mt-1">
+                        <span class="ru">Окт 2024 & Авг 2024</span><span class="en">Oct 2024 & Aug 2024</span><br><span class="text-white">Belgrade, SRB</span>
+                    </div>
+                    <div class="md:col-span-3">
+                        <h3 class="text-lg font-medium text-white uppercase">Live Broadcast & Stage Engineer</h3>
+                        <div class="font-mono text-xs text-studioMuted mb-4">BETBOOM TOURNAMENT / CHANGEOVER FESTIVAL</div>
+                        <p class="text-sm leading-relaxed text-[#717784]">
+                            <span class="ru">BetBoom: Техническое обеспечение и мониторинг качества звука в интервью-секторе во время прямых трансляций.<br>Changeover: Инженер рок-сцены, подготовка оборудования, коммутация и смена бэндов.</span>
+                            <span class="en">BetBoom: Technical support and audio quality monitoring in the interview sector during live broadcasts.<br>Changeover: Rock stage engineer, equipment preparation, patching, and band changeovers.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Место 4 -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 border-l border-studioBorder pl-6">
+                    <div class="font-mono text-xs text-studioMuted mt-1">
+                        <span class="ru">Сен 2023 – Фев 2024</span><span class="en">Sep 2023 – Feb 2024</span><br><span class="text-white">Belgrade, SRB</span>
+                    </div>
+                    <div class="md:col-span-3">
+                        <h3 class="text-lg font-medium text-white uppercase">
+                            <span class="ru">Ассистент звукорежиссера</span><span class="en">Assistant Sound Engineer</span>
+                        </h3>
+                        <p class="text-sm leading-relaxed text-[#717784]">
+                            <span class="ru">Ассистирование старшему звукорежиссеру. Подготовка студии к сессиям, работа с patch bay, расстановка и настройка микрофонного парка, проведение сессий звукозаписи.</span>
+                            <span class="en">Assisting the senior sound engineer. Preparing the studio for sessions, working with the patch bay, placing and tuning microphones, and conducting recording sessions.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СТУДИЯ (ФОТОГАЛЕРЕЯ) -->
+        <section id="studio" class="py-24 border-t border-studioBorder bg-[#090a0c]">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-16 gap-4">
+                    <div>
+                        <span class="font-mono text-xs uppercase text-studioMuted block mb-2">// WORKSPACE</span>
+                        <h2 class="text-3xl font-normal text-white uppercase tracking-tight">Sound Space Studio</h2>
+                        <p class="text-sm text-studioMuted mt-2 max-w-xl">
+                            <span class="ru">Полностью акустически подготовленное пространство в Алматы для качественного мониторинга, саунд-дизайна и сведения.</span>
+                            <span class="en">A fully acoustically treated space in Almaty for high-quality monitoring, sound design, and mixing.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Сетка фотографий -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="md:col-span-2 h-64 sm:h-80 lg:h-96 rounded border border-studioBorder overflow-hidden">
+                        <img src="Files/Photos/Studio Photo 1.JPG" alt="Sound Space Studio Main Desk" class="w-full h-full object-cover studio-image">
+                    </div>
+                    <div class="h-64 sm:h-80 lg:h-96 rounded border border-studioBorder overflow-hidden">
+                        <img src="Files/Photos/Studio Photo 2.JPG" alt="Teenage Engineering Sampler" class="w-full h-full object-cover studio-image" style="object-position: center;">
+                    </div>
+                    <div class="h-64 sm:h-80 rounded border border-studioBorder overflow-hidden">
+                        <img src="Files/Photos/Studio Photo 3.JPG" alt="Recording Area with Microphone" class="w-full h-full object-cover studio-image">
+                    </div>
+                    <div class="h-64 sm:h-80 rounded border border-studioBorder overflow-hidden">
+                        <img src="Files/Photos/Studio Photo 4.jpeg" alt="Laptop with DAW" class="w-full h-full object-cover studio-image">
+                    </div>
+                    <div class="h-64 sm:h-80 rounded border border-studioBorder overflow-hidden md:col-span-2 lg:col-span-1">
+                        <img src="Files/Photos/Studio Photo 5.jpeg" alt="Vinyl Player and Chill Zone" class="w-full h-full object-cover studio-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ПЛЕЕР -->
+        <section id="player-section" class="py-24 border-t border-studioBorder bg-studioCard">
+            <div class="max-w-6xl mx-auto px-6">
+                <span class="font-mono text-xs uppercase text-studioMuted block mb-4">
+                    <span class="ru">// ИНТЕРАКТИВНОЕ ПОРТФОЛИО</span><span class="en">// INTERACTIVE PORTFOLIO</span>
+                </span>
+                <h2 class="text-3xl font-normal text-white uppercase tracking-tight mb-8">
+                    <span class="ru">Стем-плеер / Разбор сцен</span><span class="en">Stem Player / Scene Breakdown</span>
+                </h2>
+                <p class="text-sm text-studioText mb-12 max-w-2xl">
+                    <span class="ru">Прослушайте отдельные слои моего саунд-дизайна. Кнопки <span class="text-white">M</span> (Mute) выключают дорожку, <span class="text-white">S</span> (Solo) изолируют её.</span>
+                    <span class="en">Listen to the individual layers of my sound design. The <span class="text-white">M</span> (Mute) buttons silence the track, while <span class="text-white">S</span> (Solo) isolates it.</span>
+                </p>
+                
+                <div class="bg-studioBg border border-studioBorder rounded-lg p-6 shadow-xl flex flex-col lg:flex-row gap-8">
+                    <!-- Видео и Транспорт -->
+                    <div class="w-full lg:w-3/5 flex flex-col">
+                        <div class="bg-black aspect-video rounded border border-studioBorder overflow-hidden relative mb-6 flex items-center justify-center">
+                            <video id="master-video" class="w-full h-full object-cover" playsinline preload="auto"></video>
+                            
+                            <div id="audio-visualizer" class="absolute inset-0 flex items-center justify-center bg-studioBg hidden">
+                                <i class="fa-solid fa-waveform text-6xl text-studioBorderHover opacity-70"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col gap-4 bg-studioCard/50 p-4 rounded border border-studioBorder/50">
+                            <div class="flex justify-between items-center font-mono text-xs">
+                                <span id="current-track-title" class="text-white uppercase font-bold text-sm truncate">...</span>
+                                <span id="player-time-display" class="text-studioMuted">00:00 / 00:00</span>
+                            </div>
+                            
+                            <div class="relative w-full h-2 bg-studioBorder rounded cursor-pointer" id="progress-bar-container" onclick="seekMedia(event)">
+                                <div id="progress-bar" class="absolute top-0 left-0 h-full bg-studioAccent w-0 rounded pointer-events-none"></div>
+                            </div>
+
+                            <div class="flex items-center justify-center pt-2">
+                                <div class="flex items-center gap-6">
+                                    <button onclick="prevTrack()" class="text-studioMuted hover:text-white transition-colors text-lg"><i class="fa-solid fa-backward-step"></i></button>
+                                    <button onclick="togglePlay()" class="w-12 h-12 rounded-full border border-studioBorder hover:border-studioAccent bg-studioBg text-white flex items-center justify-center transition-all">
+                                        <i class="fa-solid fa-play ml-0.5" id="play-icon"></i>
+                                    </button>
+                                    <button onclick="nextTrack()" class="text-studioMuted hover:text-white transition-colors text-lg"><i class="fa-solid fa-forward-step"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Микшер -->
+                    <div class="w-full lg:w-2/5 flex flex-col gap-3 font-mono text-xs">
+                        <div class="text-studioMuted mb-2 flex justify-between uppercase tracking-wider text-[10px] px-2">
+                            <span><span class="ru">Название / Трэк</span><span class="en">Track Name</span></span>
+                            <div class="flex gap-12">
+                                <span><span class="ru">Контроль</span><span class="en">Controls</span></span>
+                                <span>Vol</span>
+                            </div>
+                        </div>
+                        <div id="mixer-channels" class="flex flex-col gap-2"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- КОНТАКТЫ -->
+        <section id="contacts" class="py-24 border-t border-studioBorder max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="font-mono text-xs uppercase text-studioMuted block mb-2">
+                        <span class="ru">// СВЯЗЬ И СОТРУДНИЧЕСТВО</span><span class="en">// CONTACT & COLLABORATION</span>
+                    </span>
+                    <h2 class="text-2xl font-normal text-white uppercase tracking-tight mb-4">
+                        <span class="ru">Обсудить проект</span><span class="en">Discuss a Project</span>
+                    </h2>
+                    <p class="text-xs leading-relaxed max-w-sm">
+                        <span class="ru">Открыт к предложениям по саунд-дизайну, сведению, мастерингу и записи на площадке. Базируюсь в Алматы, работаю worldwide.</span>
+                        <span class="en">Open to offers for sound design, mixing, mastering, and on-set recording. Based in Almaty, working worldwide.</span>
+                    </p>
+                </div>
+                
+                <div class="flex flex-wrap gap-3 justify-end font-mono text-[10px] uppercase tracking-wider">
+                    <a href="https://wa.me/77011006354" target="_blank" class="w-full sm:w-auto px-4 py-3 bg-studioCard border border-studioBorder text-white rounded hover:border-studioAccent hover:text-studioAccent flex items-center justify-center gap-2 transition-all whitespace-nowrap">
+                        <i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span>
+                    </a>
+                    <a href="mailto:alex.djordjevic22@gmail.com" class="w-full sm:w-auto px-4 py-3 bg-studioCard border border-studioBorder text-white rounded hover:border-studioAccent hover:text-studioAccent flex items-center justify-center gap-2 transition-all whitespace-nowrap">
+                        <i class="fa-regular fa-envelope"></i><span>Email</span>
+                    </a>
+                    <a href="https://www.instagram.com/adiordjevic/" target="_blank" class="w-full sm:w-auto px-4 py-3 bg-studioCard border border-studioBorder text-white rounded hover:border-studioAccent hover:text-studioAccent flex items-center justify-center gap-2 transition-all whitespace-nowrap">
+                        <i class="fa-brands fa-instagram"></i><span>Instagram</span>
+                    </a>
+                    <a href="https://t.me/diordjevic" target="_blank" class="w-full sm:w-auto px-4 py-3 bg-studioCard border border-studioBorder text-white rounded hover:border-studioAccent hover:text-studioAccent flex items-center justify-center gap-2 transition-all whitespace-nowrap">
+                        <i class="fa-brands fa-telegram"></i><span>Telegram</span>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-studioBorder mt-16 pt-6 flex flex-col sm:flex-row justify-between font-mono text-[10px] text-studioMuted uppercase tracking-widest">
+                <div>© 2026 ALEXANDER ĐORĐEVIĆ. ALL RIGHTS RESERVED.</div>
+                <div class="mt-2 sm:mt-0">ENGINEERED SOUND</div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // --- ДАННЫЕ ПЛЕЙЛИСТА (Добавлена поддержка двух языков в названиях треков) ---
+        const playlist = [
+            {
+                title: { ru: 'К/Ф "Ана"', en: 'Short Film "Ana"' },
+                type: "video",
+                videoUrl: "Files/Ana/Video/Ana4k20bit.mp4", 
+                stems: [
+                    { id: 'dia', name: 'Dialogue', url: 'Files/Ana/Audio/8-Dialogue.mp3', vol: 0.7 },
+                    { id: 'amb', name: 'Ambience', url: 'Files/Ana/Audio/5-Atmosphere.mp3', vol: 0.7 },
+                    { id: 'fol', name: 'Foley',    url: 'Files/Ana/Audio/7-Foley.mp3', vol: 0.7 },
+                    { id: 'fx',  name: 'SFX',      url: 'Files/Ana/Audio/3-FXs.mp3', vol: 0.7 },
+                    { id: 'mus', name: 'Music',    url: 'Files/Ana/Audio/4-Music.mp3', vol: 0.7 },
+                    { id: 'rev', name: 'Reverbs',  url: 'Files/Ana/Audio/6-Reverbs.mp3', vol: 0.7 }
+                ]
+            }
+        ];
+
+        // --- КЭШИРОВАНИЕ DOM-ЭЛЕМЕНТОВ ---
+        const DOM = {
+            video: document.getElementById('master-video'),
+            visualizer: document.getElementById('audio-visualizer'),
+            title: document.getElementById('current-track-title'),
+            time: document.getElementById('player-time-display'),
+            progress: document.getElementById('progress-bar'),
+            playIcon: document.getElementById('play-icon'),
+            mixer: document.getElementById('mixer-channels'),
+            timecode: document.getElementById('live-time'),
+            progressCont: document.getElementById('progress-bar-container'),
+            btnRu: document.getElementById('btn-ru'),
+            btnEn: document.getElementById('btn-en')
+        };
+
+        let state = {
+            index: 0,
+            playing: false,
+            master: null,
+            audios: {},
+            volumes: {},
+            mute: new Set(),
+            solo: new Set(),
+            btns: {}, 
+            isVideo: false
+        };
+
+        const SILENCE = 0.00001; 
+
+        // Инициализация при загрузке
+        window.onload = () => {
+            // Установка языка по умолчанию (Русский)
+            setLang('ru');
+
+            // Таймкод в правом верхнем углу
+            setInterval(() => {
+                const d = new Date();
+                DOM.timecode.textContent = `TC ${[d.getHours(), d.getMinutes(), d.getSeconds()].map(n => String(n).padStart(2, '0')).join(':')}:${String(Math.floor(d.getMilliseconds() / 41)).padStart(2, '0')}`;
+            }, 41);
+            
+            selectTrack(0);
+        };
+
+        // --- ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКОВ ---
+        function setLang(lang) {
+            document.documentElement.lang = lang;
+            
+            // Подсветка активной кнопки
+            if (lang === 'ru') {
+                DOM.btnRu.classList.add('active');
+                DOM.btnEn.classList.remove('active');
+            } else {
+                DOM.btnEn.classList.add('active');
+                DOM.btnRu.classList.remove('active');
+            }
+
+            // Обновляем название трека в плеере под новый язык
+            if (playlist[state.index]) {
+                DOM.title.textContent = playlist[state.index].title[lang];
+            }
+        }
+
+        // --- ЛОГИКА ПЛЕЕРА ---
+        function selectTrack(i) {
+            pauseAll();
+            Object.assign(state, { index: i, audios: {}, volumes: {}, mute: new Set(), solo: new Set(), btns: {}, master: null, isVideo: false });
+            const track = playlist[i];
+            
+            // Название трека зависит от выбранного языка
+            const currentLang = document.documentElement.lang || 'ru';
+            DOM.title.textContent = track.title[currentLang];
+            
+            state.isVideo = track.type === 'video' && !!track.videoUrl;
+            
+            if (state.isVideo) {
+                DOM.video.src = track.videoUrl;
+                state.master = DOM.video;
+                DOM.video.muted = true;
+                DOM.video.ontimeupdate = updateProgressUI;
+                DOM.video.onended = pauseAll;
+            } else {
+                DOM.video.removeAttribute('src'); 
+                DOM.video.load();
+            }
+            
+            DOM.video.classList.toggle('hidden', !state.isVideo);
+            DOM.visualizer.classList.toggle('hidden', state.isVideo);
+
+            let mixerHtml = '';
+            track.stems.forEach((stem, idx) => {
+                const audio = new Audio(stem.url);
+                audio.preload = "auto";
+                state.audios[stem.id] = audio;
+                state.volumes[stem.id] = stem.vol;
+                
+                if (!state.master && idx === 0) {
+                    state.master = audio;
+                    state.master.ontimeupdate = updateProgressUI;
+                    state.master.onended = pauseAll;
+                }
+
+                mixerHtml += `
+                    <div class="flex items-center justify-between bg-studioBg/50 p-2.5 rounded border border-studioBorder hover:border-studioBorderHover transition-colors">
+                        <span class="w-16 font-bold text-white uppercase text-[10px] tracking-wider">${stem.name}</span>
+                        <div class="flex items-center gap-4">
+                            <div class="flex gap-1.5">
+                                <button id="m-${stem.id}" onclick="toggleMute('${stem.id}')" class="w-7 h-7 rounded text-[10px] font-bold border border-studioBorder text-studioMuted hover:text-white transition-colors">M</button>
+                                <button id="s-${stem.id}" onclick="toggleSolo('${stem.id}')" class="w-7 h-7 rounded text-[10px] font-bold border border-studioBorder text-studioMuted hover:text-white transition-colors">S</button>
+                            </div>
+                            <input type="range" min="0" max="1" step="0.01" value="${stem.vol}" oninput="changeVol('${stem.id}', this.value)" class="w-20">
+                        </div>
+                    </div>`;
+            });
+            DOM.mixer.innerHTML = mixerHtml;
+            
+            track.stems.forEach(stem => {
+                state.btns[stem.id] = { m: document.getElementById(`m-${stem.id}`), s: document.getElementById(`s-${stem.id}`) };
+            });
+
+            applyMixer();
+            updateProgressUI();
+        }
+
+        const toggleMute = id => { state.mute.has(id) ? state.mute.delete(id) : state.mute.add(id); applyMixer(); };
+        const toggleSolo = id => { state.solo.has(id) ? state.solo.delete(id) : state.solo.add(id); applyMixer(); };
+        const changeVol = (id, val) => { state.volumes[id] = parseFloat(val); applyMixer(); };
+
+        function applyMixer() {
+            for (const [id, audio] of Object.entries(state.audios)) {
+                let vol = state.volumes[id];
+                if (state.mute.has(id) || (state.solo.size > 0 && !state.solo.has(id))) vol = SILENCE;
+                audio.volume = vol;
+
+                const btns = state.btns[id];
+                btns.m.className = state.mute.has(id) ? "w-7 h-7 rounded text-[10px] font-bold border border-red-900 bg-red-900/30 text-red-500" : "w-7 h-7 rounded text-[10px] font-bold border border-studioBorder bg-studioCard text-studioMuted hover:text-white";
+                btns.s.className = state.solo.has(id) ? "w-7 h-7 rounded text-[10px] font-bold border border-yellow-700 bg-yellow-700/30 text-yellow-500" : "w-7 h-7 rounded text-[10px] font-bold border border-studioBorder bg-studioCard text-studioMuted hover:text-white";
+            }
+        }
+
+        function togglePlay() { state.playing ? pauseAll() : playAll(); }
+
+        function playAll() {
+            const t = state.master ? state.master.currentTime : 0;
+            Object.values(state.audios).forEach(a => a.currentTime = t);
+            if (state.isVideo) DOM.video.currentTime = t;
+
+            Object.values(state.audios).forEach(a => a.play().catch(()=>{}));
+            if (state.isVideo) DOM.video.play().catch(()=>{});
+            
+            state.playing = true;
+            DOM.playIcon.className = "fa-solid fa-pause ml-0.5";
+        }
+
+        function pauseAll() {
+            if (state.isVideo) DOM.video.pause();
+            Object.values(state.audios).forEach(a => a.pause());
+            state.playing = false;
+            DOM.playIcon.className = "fa-solid fa-play ml-0.5";
+        }
+
+        function nextTrack() { selectTrack((state.index + 1) % playlist.length); playAll(); }
+        function prevTrack() { selectTrack((state.index - 1 + playlist.length) % playlist.length); playAll(); }
+
+        const fmtTime = s => isNaN(s) ? "00:00" : `${String(Math.floor(s/60)).padStart(2,'0')}:${String(Math.floor(s%60)).padStart(2,'0')}`;
+
+        function updateProgressUI() {
+            if (!state.master || isNaN(state.master.duration) || state.master.duration === 0) return;
+            const current = state.master.currentTime;
+            const duration = state.master.duration;
+            DOM.progress.style.width = `${(current / duration) * 100}%`;
+            DOM.time.textContent = `${fmtTime(current)} / ${fmtTime(duration)}`;
+        }
+
+        function seekMedia(e) {
+            if (!state.master || isNaN(state.master.duration)) return;
+            const rect = DOM.progressCont.getBoundingClientRect();
+            const t = ((e.clientX - rect.left) / rect.width) * state.master.duration;
+            
+            state.master.currentTime = t;
+            Object.values(state.audios).forEach(a => a.currentTime = t);
+            updateProgressUI();
+            
+            if (!state.playing) playAll();
+        }
+    </script>
+</body>
+</html>
